@@ -41,24 +41,80 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
+  return cb(arr);
 }
+// Write a function to get the length of an array
+const lengthOfArray = function(arr) {
+  return arr.length;
+}
+console.log(lengthOfArray(items)); // This gets the length of whatever array we pass in as an argument
+
+console.log(getLength(items, lengthOfArray)); // Callback function is working when we pass in the arguments
+
+
 
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
+  return cb(arr);
 }
+
+// Writing a function to get the last item of an array
+
+const lastItem = function(arr) {
+  return arr[arr.length - 1];
+}
+console.log(lastItem(items)); // Function Works!
+
+console.log(last(items, lastItem)); // CB function works
+
+
 
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
+  return cb(x,y);
 }
+// Writing our CB function to add the numbers
+const add = function(x, y) {
+  return x + y;
+}
+console.log(add(2, 3)); // Our add function is working
+
+console.log(sumNums(5, 7, add)); // Our CB function works
+
 
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb(x, y);
 }
+
+const multNums = function(x, y) {
+  return x * y;
+}
+console.log(multNums(3, 6)); // our function works
+
+console.log(multNums(3, 5, multNums)); // The callback function is working
 
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
+  return cb(item, list);
 }
+
+const exists = function(item, list) {
+  for(let i=0; i < list.length; i++) {
+    if (list[i] === item) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+console.log(exists('Pencil', items)); // our  function works
+
+console.log(contains('Pencil', items, exists)); // Our CB function works
+
+
 
 /* STRETCH PROBLEM */
 

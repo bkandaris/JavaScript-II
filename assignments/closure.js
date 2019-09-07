@@ -4,6 +4,11 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+var inner = 3  // Outer variable
+const block = () => inner + 2; // variable can be used inside of the function and changes the var to 5
+console.log(block()); 
+
+
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 

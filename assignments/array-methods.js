@@ -58,28 +58,70 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
-console.log(fullNames);
+runners.forEach(x => fullNames.push(`${x.first_name} ${x.last_name}`)
+);
+
+// console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
 let firstNamesAllCaps = [];
-console.log(firstNamesAllCaps);
+
+firstNamesAllCaps = runners.map(function(item){
+  return item.first_name.toUpperCase();
+})
+
+// console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
 let runnersLargeSizeShirt = [];
-console.log(runnersLargeSizeShirt);
+
+runnersLargeSizeShirt = runners.filter(function(x) {
+  return x.shirt_size === 'L';
+})
+
+// console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
 let ticketPriceTotal = 0;
-console.log(ticketPriceTotal);
+ticketPriceTotal = runners.reduce((accumulator, currentValue) => accumulator += currentValue.donation, 0);
+
+// console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1
+// Problem 1 - .map
+// The event director needs to send an e-mail to all of the runners to warn them about a possible storm incoming. Get a list to the director. 
+
+let newArray = [];
+runners.forEach(item => newArray.push(item.email));
+// console.log(newArray);
+
+// Extra .forEach practice
+// The company needs to fill out tax forms for all of the companies that donated. Get a list of the company names and donation amounts.
+let taxes = [];
+runners.forEach(item => taxes.push(`${item.company_name} donated ${item.donation}`));
+// console.log(taxes);
+
 
 // Problem 2
+// Any companies that donated over $100 gets an entry to a prize drawing. Get a list of companies that donated > $100. 
+const bigMoney = runners.filter(bigDono => bigDono.donation > 100);
+// console.log(bigMoney);
+
+// Extra .filter practice
+// Looks like there was an issue with the small shirts as well! Get a list of all of the people who ordered small shirts and their emails.
+const smallShirts = runners.filter(x => x.shirt_size === 'S')
+// console.log(smallShirts);
+
 
 // Problem 3
+// While budgeting for the event, each runner costs the director $10 for water and food. What's the total amount this event generates?
+
+const total = runners.map(expense => expense.donation - 10);
+let totalProfit = eval(total.join('+'));
+// console.log(total);
+console.log(totalProfit);
